@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Sabre Deutschland Marketing GmbH (Sabre Deutschland Marketing GmbH) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hansemerkur.de/rvm/ota/ws/types" targetNamespace="http://hansemerkur.de/rvm/ota/ws/types" elementFormDefault="qualified" version="2.001" id="OTA2005B">
+	<xs:include schemaLocation="HMR_InsuranceCommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonPrefs.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+	</xs:annotation>
+	<xs:element name="HMR_InsuranceSearchRS">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Container for insurance plan book responses.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence minOccurs="0">
+					<xs:element name="Success" type="SuccessType">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Indicator for successful request processing</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Warnings" type="WarningsType" minOccurs="0"/>
+					<xs:element name="SearchResults">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="SearchResult" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ProviderDetail" type="ProviderDetailType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation xml:lang="en">Identifies the company providing the insurance product quoted in this response message.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="PolicyDetail" type="PolicyDetailType"/>
+											<xs:element name="CoveredTrip" type="TripFeaturesType"/>
+											<xs:element name="TotalPremium" type="CurrencyAmountType"/>
+											<xs:element name="CoveredTravelers" type="CoveredTravelersType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>use only first Givenname and Surname</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="InsuranceCustomer" type="InsuranceCustomerType" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>use only first Givenname and Surname</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="InsuranceCompany" type="StringLength2to4" use="required">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Insurance offering this plan.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="PaymentForm" type="InsurancePaymentFormType" use="optional">
+											<xs:annotation>
+												<xs:documentation>AGENCY_ENCASHMENT| CREDITCARD | BANK_ACCOUNT | DIRECT_BILL</xs:documentation>
+											</xs:annotation>
+											<!-- BE 07.12.05 -->
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="TotalResultCount" type="xs:nonNegativeInteger" use="optional">
+								<xs:annotation>
+									<xs:documentation>Total number of matching policies.</xs:documentation>
+								</xs:annotation>
+								<!-- BE 07.05.18 -->
+							</xs:attribute>
+							<xs:attribute name="NextPageStart" type="xs:nonNegativeInteger" use="optional">
+								<xs:annotation>
+									<xs:documentation>Starting position for next stack of matching policies.</xs:documentation>
+								</xs:annotation>
+								<!-- BE 07.05.18 -->
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="Errors" type="ErrorsType" minOccurs="0"/>
+			</xs:choice>
+			<xs:attributeGroup ref="OTA_PayloadStdAttributes"/>
+			<xs:attributeGroup ref="HMR_ResponseStdAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

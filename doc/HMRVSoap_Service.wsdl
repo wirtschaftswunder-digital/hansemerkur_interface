@@ -1,0 +1,170 @@
+<wsdl:definitions xmlns:axis2="http://hansemerkur.de/rvm/ota/ws" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://hansemerkur.de/rvm/ota/ws/types" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://hansemerkur.de/rvm/ota/ws">
+  <wsdl:documentation>HMRVSoap_Service</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema>
+      <xs:import namespace="http://hansemerkur.de/rvm/ota/ws/types" schemaLocation="schema/insurance/HMR_Insurance.xsd" /> 
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="HMR_InsurancePlanSearchRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsurancePlanSearchRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsurancePlanSearchRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsurancePlanSearchRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceReadRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceReadRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceReadRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceReadRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceSearchRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceSearchRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceSearchRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceSearchRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceCancelRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceCancelRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceCancelRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceCancelRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceBookRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceBookRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceBookRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceBookRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceConfirmReservationRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceConfirmReservationRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceConfirmReservationRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceConfirmReservationRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceCancelReservationRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceCancelReservationRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceCancelReservationRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceCancelReservationRS" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceQuoteRQMessage">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceQuoteRQ" />
+  </wsdl:message>
+  <wsdl:message name="HMR_InsuranceQuoteRQResponse">
+    <wsdl:part name="part1" element="ns0:HMR_InsuranceQuoteRS" />
+  </wsdl:message>
+  <wsdl:portType name="HMRVSoap_ServicePortType">
+    <wsdl:operation name="HMR_InsurancePlanSearchRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsurancePlanSearchRQMessage" wsaw:Action="urn:HMR_InsurancePlanSearchRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsurancePlanSearchRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/server/HMRVSoapConnector/HMR_InsurancePlanSearchRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceReadRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceReadRQMessage" wsaw:Action="urn:HMR_InsuranceReadRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceReadRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceReadRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceSearchRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceSearchRQMessage" wsaw:Action="urn:HMR_InsuranceSearchRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceSearchRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceSearchRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceCancelRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceCancelRQMessage" wsaw:Action="urn:HMR_InsuranceCancelRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceCancelRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceCancelRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceBookRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceBookRQMessage" wsaw:Action="urn:HMR_InsuranceBookRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceBookRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceBookRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceCancelReservationRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceCancelReservationRQMessage" wsaw:Action="urn:HMR_InsuranceCancelReservationRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceCancelReservationRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceCancelReservationRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceConfirmReservationRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceConfirmReservationRQMessage" wsaw:Action="urn:HMR_InsuranceConfirmReservationRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceConfirmReservationRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceConfirmReservationRQResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceQuoteRQ">
+      <wsdl:input xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceQuoteRQMessage" wsaw:Action="urn:HMR_InsuranceQuoteRQ" />
+      <wsdl:output xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" message="axis2:HMR_InsuranceQuoteRQResponse" wsaw:Action="http://hansemerkur.de/rvm/ota/ws/HMRVSoapConnector/HMR_InsuranceQuoteRQResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HMRVSoap_ServiceSOAP11Binding" type="axis2:HMRVSoap_ServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="HMR_InsurancePlanSearchRQ">
+      <soap:operation soapAction="urn:HMR_InsurancePlanSearchRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceReadRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceReadRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceSearchRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceSearchRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceCancelRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceCancelRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceBookRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceBookRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceConfirmReservationRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceConfirmReservationRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceCancelReservationRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceCancelReservationRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HMR_InsuranceQuoteRQ">
+      <soap:operation soapAction="urn:HMR_InsuranceQuoteRQ" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HMRVSoap_Service">
+    <wsdl:port name="HMRVSoap_ServiceSOAP11port_http" binding="axis2:HMRVSoap_ServiceSOAP11Binding">
+      <soap:address location="https://test.hmrv.de/rvm-web/services/HMRVSoap_Service" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

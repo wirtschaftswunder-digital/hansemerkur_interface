@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Sabre Deutschland Marketing GmbH (Sabre Deutschland Marketing GmbH) -->
+<xs:schema xmlns="http://hansemerkur.de/rvm/ota/ws/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://hansemerkur.de/rvm/ota/ws/types" elementFormDefault="qualified" version="2.001" id="OTA2005B">
+	<xs:include schemaLocation="HMR_InsuranceCommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonPrefs.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+	</xs:annotation>
+	<xs:element name="HMR_InsuranceCancelReservationRS">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Container for insurance Cancel Reservation responses.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence minOccurs="0">
+					<xs:element name="Success" type="SuccessType">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Indicator for successful request processing</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Warnings" type="WarningsType" minOccurs="0"/>
+					<xs:element name="PlanForCancelReservationRS" type="PolicyType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Contains a booking response for a single insurance plan.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="Errors" type="ErrorsType" minOccurs="0"/>
+			</xs:choice>
+			<xs:attributeGroup ref="OTA_PayloadStdAttributes"/>
+			<xs:attributeGroup ref="HMR_ResponseStdAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hansemerkur.de/rvm/ota/ws/types" targetNamespace="http://hansemerkur.de/rvm/ota/ws/types" elementFormDefault="qualified" version="2.100" id="OTA2010HMR">
+	<xs:include schemaLocation="HMR_InsuranceBookRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceBookRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceCancelRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceCancelRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsurancePlanSearchRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsurancePlanSearchRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceQuoteRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceQuoteRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceReadRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceReadRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceSearchRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceSearchRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceConfirmReservationRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceConfirmReservationRS.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceCancelReservationRQ.xsd"/>
+	<xs:include schemaLocation="HMR_InsuranceCancelReservationRS.xsd"/>
+</xs:schema>

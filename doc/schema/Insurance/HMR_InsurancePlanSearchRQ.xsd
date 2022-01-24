@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Ilja Brest (Sabre Deutschland Marketing GmbH) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by dcs (dcs / software development) -->
+<!-- BE 11.02.2013: changed type from OTA_CodeType to StringLength1to64 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hansemerkur.de/rvm/ota/ws/types" targetNamespace="http://hansemerkur.de/rvm/ota/ws/types" elementFormDefault="qualified" version="2.001" id="OTA2005B">
+	<xs:include schemaLocation="HMR_InsuranceCommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_SimpleTypes.xsd"/>
+	<xs:include schemaLocation="../Common/HMR_CommonPrefs.xsd"/>
+	<xs:annotation>
+		<xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+	</xs:annotation>
+	<xs:element name="HMR_InsurancePlanSearchRQ">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Root element for insurance plan search request</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="POS" type="POS_Type">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Allows vendors to pass an number of identifying codes to the insurance provider so that the provider can retrieve the plans available to that specific vendor.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CoveragePreferences" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Collection of insurance coverage preferences used in the advance plan search feature.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CoveragePreference" maxOccurs="99">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Lists a specific insurance coverage type (baggage, medical, etc) to search for and allows search-er to specify preferences on different coverages.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="CoverageLimitType">
+											<xs:attributeGroup ref="PreferLevelGroup"/>
+											<xs:attribute name="InsuranceCompany" type="StringLength2to4" use="optional">
+												<xs:annotation>
+													<xs:documentation xml:lang="en">The name of the insurance the preferences are specified for. No Entry = search for all insurances.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SearchTripInfo" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Collection of information about the trips for which insurance coverage is being searched for.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TravelSector" type="OTA_CodeType" minOccurs="0" maxOccurs="5">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"Not in use" Code used to indicate the travel sector (air, car, hotel, cruise) associated with the trips. Refer to OTA Code List Travel Sector (TVS).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TotalTripCost" minOccurs="0" type="CurrencyAmountType">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Estimated trip cost, or the total price of the journey for the traveler(s).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="MaximumTripLength" type="TimeDurationType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"Not in use" The maximum trip length the traveler(s) plan on taking during the period of coverage (Multi-Trip plans only).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="CoveredTrips" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"one trip is required" Container for any information about the trip(s) for which the traveler(s) are requesting coverage.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CoveredTrip" type="TripFeaturesType" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation>"only one CoveredTrip"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DateOfUnderwriting" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Date of underwriting.</xs:documentation>
+									<xs:documentation xml:lang="de">Versicherungsabschlussdatum.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SearchTravInfo" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Collection of information about the travelers for which insurance coverage is being searched for</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SearchTravelers" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Collection of individual traveler objects containing information about each traveler pertaining to the insurance search.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SearchTraveler" type="SearchTravelerType" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="en">Represents general information about a single traveler for which insurance coverage is being sought.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CitizenCountryName" type="CountryNameType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"not in use" Citizenship information about the traveling group (if all travelers are of same citizenship type)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ResidenceCountryName" type="CountryNameType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"not in use" Residency information about the traveling group (if all travelers are from same country of residence)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ResidenceStateProv" type="StateProvType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">State or Province name (e.g., Texas).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Affiliations" type="BoundedAffiliationsType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">"not in use" Container of objects used to associate traveling group with larger organizations (travel clubs, employers, etc)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="MinTravelers" type="xs:positiveInteger" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">"not in use" The minimum size of the group of travelers for which the coverage search is being performed.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="MaxTravelers" type="xs:positiveInteger" use="optional">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">The (maximum) size of the group of travelers for which the coverage search is being performed.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SearchProviderInfo" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">Allows to restrict the plan search to products provided by a specific company.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ServiceProvider" type="ServiceProviderType" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">Name of the insurance company offering the product.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SupplementaryAttribs" type="SupplementaryAttribsType" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="OTA_PayloadStdAttributes"/>
+			<xs:attributeGroup ref="HMR_RequestStdAttributes"/>
+			<xs:attributeGroup ref="ProductFilterSpecification"/>
+			<xs:attributeGroup ref="DetailResponseGroup">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Flag to indicate whether response should contain detailed descriptions for each plan returned.</xs:documentation>
+				</xs:annotation>
+			</xs:attributeGroup>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="ProductFilterSpecification">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Collects attributes used to filter products in a response</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="SearchResponseFilter" type="StringLength1to64" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Specifies which type of plans should be returned in the response (e.g. featured only, featured and preferred, all). Refer to OTA Code List Search Response Filter (SRF).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ProductLabelFilter" type="ListOfStringLength1to32">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Specifies a set of labels by which the products should be filtered.
+Only products tagged with at least one of the labels given here are returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>
