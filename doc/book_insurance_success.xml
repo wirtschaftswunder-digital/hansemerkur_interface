@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+            <soapenv:Body>
+            <HMR_InsuranceBookRS xmlns="http://hansemerkur.de/rvm/ota/ws/types" ExchangeID="91159254-7d46-4dfb-bad0-6954c41c183e" Target="Production" Version="2021.1">
+            <Success/><PlanForBookRS InsuranceCompany="HMR" PlanID="1"><PolicyDetail OrderDate="2022-02-24T10:49:07.000+01:00" WaiverOfAdvice="false">
+            <PolicyNumber ID="500088326" Type="18"/>
+            <PlanRestrictions>
+            <PlanRestriction Code="Coverage">RRKV,UG</PlanRestriction>
+            <PlanRestriction Code="AVB" Name="Versicherungsbedingungen">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=AVB&amp;uuidGroup=98549274-1606-b78e-8136-727497f6c8c8/168711,544d9696-14fb-2c03-acfe-b24044c70f1d/168711
+            </PlanRestriction>
+            <PlanRestriction Code="VI" Name="Verbraucherinformationen">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=VI&amp;uuidGroup=67b9891f-73e2-4a98-a590-96042f21e7bd/168711
+            </PlanRestriction>
+            <PlanRestriction Code="BP" Name="Beratungsprotokoll">https://secure-fbt.hmrv.de/rvm-rest/dokument-generator/generiere/7d691d819da32376d16283f649413fb673ec1aa
+            </PlanRestriction>
+            </PlanRestrictions>
+            <PolicyDetailURL DefaultInd="false">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=VB&amp;vsNr=500088326&amp;secureKey=7d691d819da32376d16283f649413fb673ec1aa
+            </PolicyDetailURL><Status>CONFIRMED</Status><PolicyPeriod>K</PolicyPeriod></PolicyDetail>
+            <CoveredTravelers><CoveredTraveler ID="4711">
+            <CoveredPerson><NamePrefix>T</NamePrefix><GivenName>Jona</GivenName><Surname>Tzschoppe</Surname><BirthDate>2014-07-04</BirthDate></CoveredPerson><CitizenCountryName Code="DE" DefaultInd="false"/><IndCoverageReqs>
+            <IndTripCost Amount="500.00" CurrencyCode="EUR"/>
+            </IndCoverageReqs></CoveredTraveler><CoveredTraveler ID="4712">
+            <CoveredPerson><NamePrefix>T</NamePrefix><GivenName>Linus</GivenName>
+            <Surname>Tzschoppe</Surname><BirthDate>2016-04-11</BirthDate></CoveredPerson>
+            <CitizenCountryName Code="DE" DefaultInd="false"/><IndCoverageReqs><IndTripCost Amount="500.00" CurrencyCode="EUR"/></IndCoverageReqs>
+            </CoveredTraveler></CoveredTravelers><InsCoverageDetail Type="SingleTrip"><CoverageRequirements>
+            <CoverageRequirement CoverageType="1"/></CoverageRequirements><CoveredTrips><CoveredTrip BookingConfirmation="2022-02-24T10:49:02+01:00" End="2022-07-14T12:00:00.000+02:00" PeriodType="TRAVEL_PERIOD" Start="2022-07-01T12:00:00.000+02:00"><Destinations>
+            <Destination ArrivalDate="2022-07-01"><DestinationCategory><Country>DE</Country></DestinationCategory></Destination></Destinations></CoveredTrip></CoveredTrips></InsCoverageDetail><Services><Service ID="1"><Tariff><TariffCode>902498</TariffCode>
+            <Premium Amount="16.00" CurrencyCode="EUR" DecimalPlaces="0"/><TariffDescription>
+            <Title>Reise-Rücktritt Jugendreisen</Title><URL>https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=PIB&amp;uuidGroup=a9997287-736e-4947-9f40-0284c1172f8e/168711</URL><URL Type="IPID">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=PIB&amp;uuid=a9997287-736e-4947-9f40-0284c1172f8e&amp;groupId=168711</URL>
+            </TariffDescription><TariffDetails><Coverage>RRKV</Coverage>
+            </TariffDetails></Tariff><TravelerAllocations><TravelerAllocation CoInsured="false" ID="1" TravelerIDRef="4711"/><TravelerAllocation CoInsured="false" ID="2" TravelerIDRef="4712"/></TravelerAllocations>
+            <ServiceTotalPremium Amount="32.00" CurrencyCode="EUR" DecimalPlaces="0"/><ServiceProvider Code="HMR">HanseMerkur Reiseversicherung AG</ServiceProvider></Service><Service ID="2">
+            <Tariff><TariffCode>931435</TariffCode><Premium Amount="9.00" CurrencyCode="EUR" DecimalPlaces="0"/>
+            <TariffDescription><Title>Corona-Reiseschutz</Title><URL>https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=PIB&amp;uuidGroup=f45fef1f-5c70-bc3f-d274-87ff10d211be/168711,6d5e169e-2673-d153-a61c-dd35707cc72d/168711</URL>
+            <URL Type="IPID">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=PIB&amp;uuid=f45fef1f-5c70-bc3f-d274-87ff10d211be&amp;groupId=168711</URL><URL Type="LEISTB">https://secure-fbt.hmrv.de/rda-web/servlet/DokumentAdapter?dokumentTyp=LEISTB&amp;uuid=6d5e169e-2673-d153-a61c-dd35707cc72d&amp;groupId=168711</URL>
+            </TariffDescription><TariffDetails><Coverage>UG,RRKV</Coverage></TariffDetails></Tariff><TravelerAllocations><TravelerAllocation CoInsured="false" ID="3" TravelerIDRef="4711"/><TravelerAllocation CoInsured="false" ID="4" TravelerIDRef="4712"/></TravelerAllocations>
+            <ServiceTotalPremium Amount="18.00" CurrencyCode="EUR" DecimalPlaces="0"/><ServiceProvider Code="HMR">HanseMerkur Reiseversicherung AG</ServiceProvider></Service><TotalPremium Amount="50.00" CurrencyCode="EUR" DecimalPlaces="0"/></Services>
+            <InsuranceCustomer BirthDate="1983-12-02" CurrencyCode="EUR"><PersonName><NamePrefix>T</NamePrefix><GivenName>Britta</GivenName><Surname>Tzschoppe</Surname></PersonName><Telephone PhoneNumber="123456789" phonetechtype="5"/><email>britta.tzschoppe@gmx.de</Email><Address DefaultInd="false" FormattedInd="false"><StreetNmbr>Im Handbachtal 65</StreetNmbr><CityName>Oberhausen</CityName><PostalCode>46147</PostalCode><CountryName>DE</CountryName></Address>
+            </InsuranceCustomer></PlanForBookRS>
+            </HMR_InsuranceBookRS></soapenv:Body></soapenv:Envelope>
