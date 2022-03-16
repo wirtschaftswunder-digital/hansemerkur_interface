@@ -79,7 +79,7 @@ module HansemerkurInterface
 
             def call 
              response = @request.call(generate_xml)
-             puts response.parsed_response
+             #puts response.parsed_response
              if response.parsed_response.nil? || response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"].key?('Errors')
              # puts  response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]
               raise HanseMerkurException.new(response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
