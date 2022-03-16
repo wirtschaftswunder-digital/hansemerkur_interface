@@ -21,7 +21,7 @@ module HansemerkurInterface
               raise 'You need at least one traveler' if booking_information[:persons].empty? 
               booking_information[:persons] do |person|
                 raise 'Each traveller has to have a birthdate' if person[:birthdate].nil? 
-                raise 'Each traveler has to have a lastname' if person[:last_name].blank? 
+                raise 'Each traveler has to have a lastname' if person[:surname].blank? 
                 raise 'Each traveler has to have an amount' if person[:amount].nil? || person.amount == 0 
                 raise 'Each traveler has to have a country code' if person[:country_code].blank? 
               end
@@ -72,7 +72,7 @@ module HansemerkurInterface
                         <SearchTravelers>
                         #{ 
                           booking_information[:persons].each_with_index.map do |person, index|
-                            %(<SearchTraveler ID="#{index+1}" NamePrefix="#{person[:last_name].chars.first.upcase}">
+                            %(<SearchTraveler ID="#{index+1}" NamePrefix="#{person[:surname].chars.first.upcase}">
                               <BirthDate>#{person[:birthdate].strftime('%Y-%m-%d')}</BirthDate>
                                 <CitizenCountryName Code="#{person[:country_code].upcase}" DefaultInd="false"/>
                                 <IndCoverageReqs>
