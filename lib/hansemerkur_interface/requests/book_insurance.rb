@@ -93,7 +93,7 @@ module HansemerkurInterface
             end
 
             def get_services
-              insurance_book_rs["PlanForBookRS"]["Services"]["Service"].is_a?(Array) ? return insurance_book_rs["PlanForBookRS"]["Services"]["Service"] : [insurance_book_rs["PlanForBookRS"]["Services"]["Service"]]
+              insurance_book_rs["PlanForBookRS"]["Services"]["Service"].is_a?(Array) ? insurance_book_rs["PlanForBookRS"]["Services"]["Service"] : [insurance_book_rs["PlanForBookRS"]["Services"]["Service"]]
             end
 
             def generate_xml 
