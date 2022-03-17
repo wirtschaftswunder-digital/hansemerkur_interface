@@ -1,7 +1,7 @@
 module HansemerkurInterface 
     module Requests 
         class BookInsurance
-          attr_accessor :request, :options, :booking_information 
+          attr_accessor :request, :options, :booking_information, :response 
             #booking_information ruby hash: 
             # destination_country_code:string   
             # booking_region:string
@@ -78,14 +78,22 @@ module HansemerkurInterface
             end
 
             def call 
-             response = @request.call(generate_xml)
+             @response = @request.call(generate_xml)
              #puts response.parsed_response
-             if response.parsed_response.nil? || response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"].key?('Errors')
+             if @response.parsed_response.nil? || @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"].key?('Errors')
              # puts  response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]
-              raise HanseMerkurException.new(response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
+              raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
              else 
-              return response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]
+              return @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]
              end
+            end
+
+            def insurance_book_rs 
+              @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]
+            end
+
+            def get_services
+              insurance_book_rs["PlanForBookRS"]["Services"]["Service"].is_a?(Array) ? return insurance_book_rs["PlanForBookRS"]["Services"]["Service"] : [insurance_book_rs["PlanForBookRS"]["Services"]["Service"]]
             end
 
             def generate_xml 
