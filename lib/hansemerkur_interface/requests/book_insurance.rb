@@ -112,7 +112,7 @@ module HansemerkurInterface
                         booking_information[:covered_persons].each.map do |person|
                         %(<CoveredTraveler ID="#{person[:id]}">
                           <CoveredPerson>
-                            <NamePrefix>#{person[:surname].chars.first.upcase}</NamePrefix>
+                            <NamePrefix>#{person[:gender]}</NamePrefix>
                             <GivenName>#{person[:given_name]}</GivenName>
                             <Surname>#{person[:surname]}</Surname>
                             <BirthDate>#{person[:birthdate].strftime('%Y-%m-%d')}</BirthDate>
