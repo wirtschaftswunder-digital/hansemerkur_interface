@@ -144,7 +144,7 @@ module HansemerkurInterface
                       <QuoteIDRef>1000</QuoteIDRef>
                       <InsuranceCustomer BirthDate="#{booking_information[:insurance_customer][:birthdate]}" CurrencyCode="EUR">
                         <PersonName>
-                          <NamePrefix>#{booking_information[:insurance_customer][:surname].chars.first.upcase}</NamePrefix>
+                          <NamePrefix>#{booking_information[:insurance_customer][:gender]}</NamePrefix>
                           <GivenName>#{booking_information[:insurance_customer][:given_name]}</GivenName>
                           <Surname>#{booking_information[:insurance_customer][:surname]}</Surname>
                         </PersonName>
