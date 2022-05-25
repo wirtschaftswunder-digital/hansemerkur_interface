@@ -12,7 +12,8 @@ module HansemerkurInterface
                 password: 'sjWr1%~sl3-x',
                 api_endpoint: 'https://test.hmrv.de/rvm-web/services/HMRVSoap_Service',
                 terminal_id: '7066335',
-                requestor_id: 'WWDIGITAL'
+                requestor_id: 'WWDIGITAL',
+                anbieter_iso_code: 'DE'
               }
           end
 
