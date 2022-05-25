@@ -48,7 +48,7 @@ module HansemerkurInterface
                 <SOAP-ENV:Body>
                     <HMR_InsurancePlanSearchRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" DetailResponse="true" Target="Test" TimeStamp="#{DateTime.now}" Version="2021.1">
                       <POS>
-                        <Source ISOCountry="DE" ISOCurrency="EUR" TerminalID="#{@request.options[:terminal_id]}">
+                        <Source ISOCountry="#{@request.options[:anbieter_iso_code]}" ISOCurrency="EUR" TerminalID="#{@request.options[:terminal_id]}">
                           <RequestorID ID="#{@request.options[:requestor_id]}" Type="5"/>
                         </Source>
                       </POS>
