@@ -19,14 +19,13 @@ module HansemerkurInterface
             # Example Hash for testing purpose
             # bc = {booking_confirmation_date:DateTime.now, 
             #       booking_region:"DE", 
-            #       trip_start: DateTime.parse('2022-7-1'), 
-            #       trip_end: DateTime.parse('2022-7-14'),
+            #       trip_start: DateTime.parse('2023-7-1'), 
+            #       trip_end: DateTime.parse('2023-7-14'),
             #       destination_country_code: "de",
-            #       covered_persons: [{id:4711, surname:"Schocke",given_name:"Jona",birthdate:Date.parse('2014-7-4'),amount:BigDecimal('500.0'),country_code:"de"},
-            #                         {id:4712, surname:"Tzschoppe",given_name:"Linus",birthdate:Date.parse('2016-4-11'),amount:BigDecimal('500.0'),country_code:"de"}],
+            #       covered_persons: [{id:4711, surname:"Schocke",given_name:"Jona",birthdate:Date.parse('2014-7-4'),amount:BigDecimal('200.0'),country_code:"de"},
+            #                         {id:4712, surname:"Tzschoppe",given_name:"Linus",birthdate:Date.parse('2016-4-11'),amount:BigDecimal('200.0'),country_code:"de"}],
             #       insurance_customer: {given_name:"Britta",surname:"Tzschoppe", birthdate:Date.parse('1983-12-2'),email:"britta.tzschoppe@gmx.de", phone_number:"123456789", street:"Im Handbachtal 65", city:"Oberhausen", postal_code:"46147", country_name:"de"},
-            #       booked_services: [{tarif_code:"931435",traveler_allocations:[4711,4712]},
-            #                         {tarif_code:"902498",traveler_allocations:[4711,4712]}]}
+            #       booked_services: [{tarif_code:"912668",traveler_allocations:[4711,4712]}]}
           
 
             def initialize(booking_information = {}, params = {})
@@ -81,8 +80,8 @@ module HansemerkurInterface
              @response = @request.call(generate_xml)
              #puts response.parsed_response
              if @response.parsed_response.nil? || @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"].key?('Errors')
-             # puts  response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]
-              raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
+              #puts  response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]
+              raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"].kind_of?(Array) ? @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"].first["__content__"] :  @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
              else 
               return @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]
              end

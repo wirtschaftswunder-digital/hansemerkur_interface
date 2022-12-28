@@ -10,7 +10,7 @@ module HansemerkurInterface
             # persons array of persons 
             # person:OpenStruct 
             #   country_code:string last_name:string birthdate:date, amount:integer 
-            # bc = {booking_confirmation_date:DateTime.now, booking_region:"DE", trip_start: DateTime.parse('2022-7-1'), trip_end: DateTime.parse('2022-7-14'),persons: [{last_name:"Tzschoppe",birthdate:Date.parse('1983-12-11'),amount:200.0,country_code:"de"}]}
+            # bc = {booking_confirmation_date:DateTime.now, booking_region:"DE", trip_start: DateTime.parse('2023-7-1'), trip_end: DateTime.parse('2023-7-14'),persons: [{surname:"Tzschoppe",birthdate:Date.parse('2009-12-11'),amount:200.0,country_code:"de"}]}
             def initialize(booking_information = {}, params = {})
               @booking_information = booking_information
               #Check for the right information

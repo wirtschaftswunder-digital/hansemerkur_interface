@@ -7,7 +7,7 @@ module HansemerkurInterface
             # cancel_reason = One out of insolvency, customer_cancellation, operator_cancellation, goodwill
             # agent_code = The employee canceled the insurance for example BT
             # Example Hash for testing purpose
-            # ci = {policy_number:"1234567", cancel_reason:"customer_cancellation", agent_duty_code:"BT"}
+            # ci = {policy_number:"500414958", cancel_reason:"customer_cancellation", agent_duty_code:"BT"}
           
 
             def initialize(cancel_information = {}, params = {})
@@ -31,8 +31,8 @@ module HansemerkurInterface
              @response = @request.call(generate_xml)
              #puts response.parsed_response
              if @response.parsed_response.nil? || @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"].key?('Errors')
-              #puts  response
-              raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"]["__content__"])
+              puts  @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]
+              raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"].kind_of?(Array) ? @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"].first["__content__"] : @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"]["__content__"])
              else 
               return @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]
              end
