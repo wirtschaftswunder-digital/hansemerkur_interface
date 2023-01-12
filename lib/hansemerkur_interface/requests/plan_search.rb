@@ -10,7 +10,7 @@ module HansemerkurInterface
             # persons array of persons 
             # person:OpenStruct 
             #   country_code:string last_name:string birthdate:date, amount:integer 
-            # bc = {booking_confirmation_date:DateTime.now, booking_region:"DE", trip_start: DateTime.parse('2023-7-1'), trip_end: DateTime.parse('2023-7-14'),persons: [{surname:"Tzschoppe",birthdate:Date.parse('2009-12-11'),amount:200.0,country_code:"de"}]}
+            # bc = {booking_confirmation_date:DateTime.now, booking_region:"AT", trip_start: DateTime.parse('2023-7-1'), trip_end: DateTime.parse('2023-7-14'),persons: [{surname:"Tzschoppe",birthdate:Date.parse('2009-12-11'),amount:200.0,country_code:"de"}]}
             def initialize(booking_information = {}, params = {})
               @booking_information = booking_information
               #Check for the right information
@@ -35,7 +35,7 @@ module HansemerkurInterface
             def call 
              response = @request.call(generate_xml)
              if response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"].key?('Errors')
-              #puts  ["Envelope"]["Body"]["HMR_InsureancePlanSearchRS"]["Errors"]
+              puts  response.parsed_response
               raise HanseMerkurException.new(response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"]["Errors"]["Error"]["__content__"])
              else 
               return response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"]["AvailablePlans"]
@@ -46,7 +46,7 @@ module HansemerkurInterface
               %(<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:axis2="http://hansemerkur.de/rvm/ota/ws" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://hansemerkur.de/rvm/ota/ws/types" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://hansemerkur.de/rvm/ota/ws">
                 <SOAP-ENV:Header/>
                 <SOAP-ENV:Body>
-                    <HMR_InsurancePlanSearchRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" DetailResponse="true" Target="Test" TimeStamp="#{DateTime.now}" Version="2021.1">
+                    <HMR_InsurancePlanSearchRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" DetailResponse="true" Target="Production" TimeStamp="#{DateTime.now}" Version="2021.1">
                       <POS>
                         <Source ISOCountry="#{@request.options[:anbieter_iso_code].upcase}" ISOCurrency="EUR" TerminalID="#{@request.options[:terminal_id]}">
                           <RequestorID ID="#{@request.options[:requestor_id]}" Type="5"/>
@@ -61,7 +61,7 @@ module HansemerkurInterface
                             <Destinations>
                               <Destination ArrivalDate="#{booking_information[:trip_start].strftime('%Y-%m-%d')}">
                                 <DestinationCategory>
-                                  <Region IncludeExtendedRegions="true">w</Region>
+                                  <Country >#{booking_information[:booking_region].nil? ? 'DE' : booking_information[:booking_region].upcase}</Country>
                                 </DestinationCategory>
                               </Destination>
                             </Destinations>
