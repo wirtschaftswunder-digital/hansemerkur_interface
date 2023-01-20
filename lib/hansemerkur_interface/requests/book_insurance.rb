@@ -18,13 +18,14 @@ module HansemerkurInterface
             #   id:string, country_code:string given_name:string surname:string birthdate:date, amount:BigDecimal
             # Example Hash for testing purpose
             # bc = {booking_confirmation_date:DateTime.now, 
-            #       booking_region:"DE", 
+            #       booking_region:"DE",
+            #       #rebook_policy_number: "500446765",
             #       trip_start: DateTime.parse('2023-7-1'), 
             #       trip_end: DateTime.parse('2023-7-14'),
             #       destination_country_code: "de",
             #       covered_persons: [{id:4711, surname:"Schocke",given_name:"Jona",birthdate:Date.parse('2014-7-4'),amount:BigDecimal('200.0'),country_code:"de"},
             #                         {id:4712, surname:"Tzschoppe",given_name:"Linus",birthdate:Date.parse('2016-4-11'),amount:BigDecimal('200.0'),country_code:"de"}],
-            #       insurance_customer: {given_name:"Britta",surname:"Tzschoppe", birthdate:Date.parse('1983-12-2'),email:"britta.tzschoppe@gmx.de", phone_number:"123456789", street:"Im Handbachtal 65", city:"Oberhausen", postal_code:"46147", country_name:"de"},
+            #       insurance_customer: {given_name:"Britta",surname:"Tzschoppe", birthdate:Date.parse('1983-12-2'),email:"benjamin.tzschoppe@gmx.de", phone_number:"123456789", street:"Im Handbachtal 65", city:"Oberhausen", postal_code:"46147", country_name:"de"},
             #       booked_services: [{tarif_code:"912668",traveler_allocations:[4711,4712]}]}
           
 
@@ -78,7 +79,7 @@ module HansemerkurInterface
 
             def call 
              @response = @request.call(generate_xml)
-             #puts response.parsed_response
+             puts response.parsed_response
              if @response.parsed_response.nil? || @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"].key?('Errors')
               #puts  response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]
               raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"].kind_of?(Array) ? @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"].first["__content__"] :  @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceBookRS"]["Errors"]["Error"]["__content__"])
@@ -105,7 +106,7 @@ module HansemerkurInterface
                         <RequestorID ID="#{@request.options[:requestor_id]}" Type="5"/>
                       </Source>
                     </POS>
-                    <PlanForBookRQ>
+                    <PlanForBookRQ RebookPolicyNumber="#{booking_information[:rebook_policy_number].nil? ? "" : booking_information[:rebook_policy_number]}">
                       <CoveredTravelers>
                       #{
                         booking_information[:covered_persons].each.map do |person|
