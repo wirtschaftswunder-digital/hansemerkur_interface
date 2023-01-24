@@ -31,11 +31,16 @@ module HansemerkurInterface
              @response = @request.call(generate_xml)
              #puts response.parsed_response
              if @response.parsed_response.nil? || @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"].key?('Errors')
-              puts  @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]
+              #puts  @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]
               raise HanseMerkurException.new(@response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"].kind_of?(Array) ? @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"].first["__content__"] : @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]["Errors"]["Error"]["__content__"])
              else 
               return @response.parsed_response["Envelope"]["Body"]["HMR_InsuranceCancelRS"]
              end
+            end
+           
+
+            def get_services
+             @response.parsed_response["PlanForCancelRS"]["Services"]["Service"].is_a?(Array) ?  @response.parsed_response["PlanForCancelRS"]["Services"]["Service"] : [@response.parsed_response["PlanForCancelRS"]["Services"]["Service"]]
             end
 
             
