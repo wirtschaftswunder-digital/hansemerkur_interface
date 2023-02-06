@@ -49,7 +49,7 @@ module HansemerkurInterface
               %(<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <soapenv:Header xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
                 <soapenv:Body xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-                  <HMR_InsuranceCancelRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" Target="Production" TimeStamp="2022-02-11T15:07:34.801+02:00" Version="2020.1">
+                  <HMR_InsuranceCancelRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" Target="Production" TimeStamp="#{DateTime.now}" Version="2020.1">
                     <POS>
                       <Source ISOCountry="#{@request.options[:anbieter_iso_code].upcase}" ISOCurrency="EUR" TerminalID="#{@request.options[:terminal_id]}" AgentDutyCode="#{cancel_information[:agent_duty_code]}">
                         <RequestorID ID="#{@request.options[:requestor_id]}" Type="5"/>
