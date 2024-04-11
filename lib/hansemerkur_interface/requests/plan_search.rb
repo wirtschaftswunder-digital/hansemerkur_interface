@@ -35,7 +35,6 @@ module HansemerkurInterface
             def call 
              response = @request.call(generate_xml)
              if response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"].key?('Errors')
-              puts  response.parsed_response
               raise HanseMerkurException.new(response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"]["Errors"]["Error"]["__content__"])
              else 
               return response.parsed_response["Envelope"]["Body"]["HMR_InsurancePlanSearchRS"]["AvailablePlans"]
