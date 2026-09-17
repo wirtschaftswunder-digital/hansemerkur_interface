@@ -26,7 +26,7 @@ module HansemerkurInterface
                 raise 'Each traveler has to have a country code' if person[:country_code].blank? 
               end
               
-              @options = {}
+              @options = { search_response_filter: 'Youth_Products' }
               @options.merge!(params)
 
               @request = HansemerkurInterface::Request.new(@options)
@@ -45,7 +45,7 @@ module HansemerkurInterface
               %(<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:axis2="http://hansemerkur.de/rvm/ota/ws" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns0="http://hansemerkur.de/rvm/ota/ws/types" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://hansemerkur.de/rvm/ota/ws">
                 <SOAP-ENV:Header/>
                 <SOAP-ENV:Body>
-                    <HMR_InsurancePlanSearchRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" DetailResponse="true" Target="Production" TimeStamp="#{DateTime.now}" Version="2021.1">
+                    <HMR_InsurancePlanSearchRQ xmlns="http://hansemerkur.de/rvm/ota/ws/types" PrimaryLangID="de" DetailResponse="true" SearchResponseFilter="#{@options[:search_response_filter]}" Target="Production" TimeStamp="#{DateTime.now}" Version="2023.1">
                       <POS>
                         <Source ISOCountry="#{@request.options[:anbieter_iso_code].upcase}" ISOCurrency="EUR" TerminalID="#{@request.options[:terminal_id]}">
                           <RequestorID ID="#{@request.options[:requestor_id]}" Type="5"/>
